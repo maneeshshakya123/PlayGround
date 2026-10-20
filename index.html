@@ -1,0 +1,561 @@
+<!DOCTYPE html>
+<html lang="en" data-accent="cyan">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" content="#04060a">
+<meta name="description" content="J.A.R.V.I.S — a personal intelligence operating system with voice control, focus tools, ambient audio, and a premium command center.">
+<title>JARVIS — Personal Intelligence OS</title>
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+<svg class="sprite" aria-hidden="true" xmlns="http://www.w3.org/2000/svg">
+  <symbol id="i-grid" viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="2"/><rect x="14" y="3" width="7" height="7" rx="2"/><rect x="3" y="14" width="7" height="7" rx="2"/><rect x="14" y="14" width="7" height="7" rx="2"/></symbol>
+  <symbol id="i-spark" viewBox="0 0 24 24"><path d="M12 3l1.9 5.6L19.5 10l-5.6 1.9L12 17.5l-1.9-5.6L4.5 10l5.6-1.4L12 3z"/><path d="M18.5 15.5l.8 2.2 2.2.8-2.2.8-.8 2.2-.8-2.2-2.2-.8 2.2-.8.8-2.2z"/></symbol>
+  <symbol id="i-target" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5"/><circle cx="12" cy="12" r="4.5"/><circle cx="12" cy="12" r="1" fill="currentColor" stroke="none"/></symbol>
+  <symbol id="i-layers" viewBox="0 0 24 24"><path d="M12 3l9 4.8-9 4.8-9-4.8L12 3z"/><path d="M3 12.2l9 4.8 9-4.8"/><path d="M3 16.7l9 4.8 9-4.8"/></symbol>
+  <symbol id="i-calendar" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="16" rx="3"/><path d="M3 10h18M8 3v4M16 3v4"/><path d="M8 14h2M14 14h2M8 17.5h2M14 17.5h2"/></symbol>
+  <symbol id="i-settings" viewBox="0 0 24 24"><circle cx="12" cy="12" r="3.2"/><path d="M19.4 15a1.7 1.7 0 00.34 1.87l.06.06a2 2 0 11-2.83 2.83l-.06-.06a1.7 1.7 0 00-1.87-.34 1.7 1.7 0 00-1.03 1.56V21a2 2 0 11-4 0v-.09A1.7 1.7 0 008 19.36a1.7 1.7 0 00-1.87.34l-.06.06a2 2 0 11-2.83-2.83l.06-.06A1.7 1.7 0 003.64 15a1.7 1.7 0 00-1.55-1.03H2a2 2 0 110-4h.09A1.7 1.7 0 003.64 8.94a1.7 1.7 0 00-.34-1.87l-.06-.06a2 2 0 112.83-2.83l.06.06A1.7 1.7 0 008 4.58h.09A1.7 1.7 0 009.12 3V3a2 2 0 114 0v.09a1.7 1.7 0 001.03 1.55 1.7 1.7 0 001.87-.34l.06-.06a2 2 0 112.83 2.83l-.06.06a1.7 1.7 0 00-.34 1.87V9a1.7 1.7 0 001.55 1.03H21a2 2 0 110 4h-.09A1.7 1.7 0 0019.4 15z"/></symbol>
+  <symbol id="i-crown" viewBox="0 0 24 24"><path d="M3 8l4.2 3.2L12 4l4.8 7.2L21 8l-1.6 10.5H4.6L3 8z"/><path d="M4.6 18.5h14.8"/></symbol>
+  <symbol id="i-search" viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.2-3.2"/></symbol>
+  <symbol id="i-bell" viewBox="0 0 24 24"><path d="M18 8.5a6 6 0 10-12 0c0 6-2.5 7.5-2.5 7.5h17S18 14.5 18 8.5z"/><path d="M10.3 20a2 2 0 003.4 0"/></symbol>
+  <symbol id="i-mic" viewBox="0 0 24 24"><rect x="9" y="3" width="6" height="11" rx="3"/><path d="M5.5 11.5a6.5 6.5 0 0013 0M12 18v3M9 21h6"/></symbol>
+  <symbol id="i-send" viewBox="0 0 24 24"><path d="M21 3L10.5 13.5M21 3l-7 18-3.5-7.5L3 10l18-7z"/></symbol>
+  <symbol id="i-play" viewBox="0 0 24 24"><path d="M7 4.5l12 7.5-12 7.5v-15z" fill="currentColor" stroke="none"/></symbol>
+  <symbol id="i-pause" viewBox="0 0 24 24"><rect x="6" y="4.5" width="4" height="15" rx="1.4" fill="currentColor" stroke="none"/><rect x="14" y="4.5" width="4" height="15" rx="1.4" fill="currentColor" stroke="none"/></symbol>
+  <symbol id="i-plus" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></symbol>
+  <symbol id="i-trash" viewBox="0 0 24 24"><path d="M4 7h16M9 7V4.5h6V7M6.5 7l1 13h9l1-13M10 11v5M14 11v5"/></symbol>
+  <symbol id="i-x" viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></symbol>
+  <symbol id="i-refresh" viewBox="0 0 24 24"><path d="M20 11a8 8 0 10-2.4 6.4M20 5v6h-6"/></symbol>
+  <symbol id="i-check" viewBox="0 0 24 24"><path d="M4.5 12.5l5 5 10-11"/></symbol>
+  <symbol id="i-chevron-left" viewBox="0 0 24 24"><path d="M15 5l-7 7 7 7"/></symbol>
+  <symbol id="i-chevron-right" viewBox="0 0 24 24"><path d="M9 5l7 7-7 7"/></symbol>
+  <symbol id="i-volume" viewBox="0 0 24 24"><path d="M4 10v4h4l5 4V6L8 10H4z"/><path d="M16 9a4 4 0 010 6M18.5 6.5a8 8 0 010 11"/></symbol>
+  <symbol id="i-external" viewBox="0 0 24 24"><path d="M14 4h6v6M20 4l-8 8"/><path d="M18 14v5a1 1 0 01-1 1H5a1 1 0 01-1-1V7a1 1 0 011-1h5"/></symbol>
+  <symbol id="i-sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4.2"/><path d="M12 2v2.5M12 19.5V22M2 12h2.5M19.5 12H22M4.9 4.9l1.8 1.8M17.3 17.3l1.8 1.8M19.1 4.9l-1.8 1.8M6.7 17.3l-1.8 1.8"/></symbol>
+  <symbol id="i-moon" viewBox="0 0 24 24"><path d="M20 14.5A8.5 8.5 0 019.5 4a8.5 8.5 0 1010.5 10.5z"/></symbol>
+  <symbol id="i-cloud" viewBox="0 0 24 24"><path d="M7 18h10a4 4 0 00.6-8A6 6 0 006 9.5 4.2 4.2 0 007 18z"/></symbol>
+  <symbol id="i-rain" viewBox="0 0 24 24"><path d="M7 15h10a4 4 0 00.6-8A6 6 0 006 6.5 4.2 4.2 0 007 15z"/><path d="M8 18l-1 3M12 18l-1 3M16 18l-1 3"/></symbol>
+  <symbol id="i-snow" viewBox="0 0 24 24"><path d="M7 14h10a4 4 0 00.6-8A6 6 0 006 5.5 4.2 4.2 0 007 14z"/><path d="M8 18h.01M12 20h.01M16 18h.01M10 21h.01M14 21h.01"/></symbol>
+  <symbol id="i-storm" viewBox="0 0 24 24"><path d="M7 14h10a4 4 0 00.6-8A6 6 0 006 5.5 4.2 4.2 0 007 14z"/><path d="M13 15l-3 5h4l-2 4"/></symbol>
+  <symbol id="i-fog" viewBox="0 0 24 24"><path d="M4 9h16M6 13h12M4 17h16M8 21h8"/></symbol>
+  <symbol id="i-battery" viewBox="0 0 24 24"><rect x="2" y="7" width="17" height="10" rx="2.5"/><path d="M21 10.5v3"/><rect x="4.5" y="9.5" width="8" height="5" rx="1" fill="currentColor" stroke="none"/></symbol>
+  <symbol id="i-wifi" viewBox="0 0 24 24"><path d="M3 9.5a14 14 0 0118 0M6.5 13a9 9 0 0111 0M10 16.5a4 4 0 014 0"/><circle cx="12" cy="20" r="1" fill="currentColor" stroke="none"/></symbol>
+  <symbol id="i-cpu" viewBox="0 0 24 24"><rect x="6" y="6" width="12" height="12" rx="2"/><rect x="9.5" y="9.5" width="5" height="5" rx="1"/><path d="M9 2v4M15 2v4M9 18v4M15 18v4M2 9h4M2 15h4M18 9h4M18 15h4"/></symbol>
+  <symbol id="i-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5.5l3.5 2"/></symbol>
+  <symbol id="i-lock" viewBox="0 0 24 24"><rect x="4.5" y="10" width="15" height="11" rx="2.5"/><path d="M8 10V7a4 4 0 018 0v3"/></symbol>
+  <symbol id="i-download" viewBox="0 0 24 24"><path d="M12 3v12M7.5 10.5L12 15l4.5-4.5M4 20h16"/></symbol>
+  <symbol id="i-wave" viewBox="0 0 24 24"><path d="M3 12h2M7 8v8M11 4v16M15 7v10M19 10v4M22 12h-1"/></symbol>
+  <symbol id="i-pin" viewBox="0 0 24 24"><path d="M12 21s7-6.2 7-11a7 7 0 10-14 0c0 4.8 7 11 7 11z"/><circle cx="12" cy="10" r="2.5"/></symbol>
+  <symbol id="i-menu" viewBox="0 0 24 24"><path d="M4 7h16M4 12h16M4 17h16"/></symbol>
+  <symbol id="i-arrow-right" viewBox="0 0 24 24"><path d="M4 12h16M14 6l6 6-6 6"/></symbol>
+  <symbol id="i-gauge" viewBox="0 0 24 24"><path d="M4 18a9 9 0 1116 0"/><path d="M12 18l4-5"/><circle cx="12" cy="18" r="1.4" fill="currentColor" stroke="none"/></symbol>
+  <symbol id="i-command" viewBox="0 0 24 24"><path d="M9 6a3 3 0 10-3 3h12a3 3 0 10-3-3v12a3 3 0 103-3H6a3 3 0 103 3V6z"/></symbol>
+</svg>
+
+<div class="bg" aria-hidden="true">
+  <div class="bg-grid"></div>
+  <div class="bg-glow g1"></div>
+  <div class="bg-glow g2"></div>
+  <div class="bg-glow g3"></div>
+  <canvas id="starfield"></canvas>
+  <div class="bg-noise"></div>
+</div>
+
+<div class="boot" id="boot">
+  <div class="boot-inner">
+    <div class="boot-core">
+      <span class="boot-ring r1"></span>
+      <span class="boot-ring r2"></span>
+      <span class="boot-ring r3"></span>
+      <span class="boot-initial">J</span>
+    </div>
+    <div class="boot-name">J.A.R.V.I.S</div>
+    <div class="boot-tagline">Just A Rather Very Intelligent System</div>
+    <div class="boot-log" id="bootLog"></div>
+    <div class="boot-progress"><span id="bootBar"></span></div>
+    <button class="boot-skip" id="bootSkip" type="button">Skip intro</button>
+  </div>
+</div>
+
+<div class="app" id="app">
+  <aside class="sidebar" id="sidebar">
+    <div class="brand">
+      <div class="brand-mark"><span class="brand-orbit"></span><span class="brand-core"></span></div>
+      <div class="brand-text"><strong>JARVIS</strong><small>Intelligence OS · 4.2</small></div>
+    </div>
+
+    <nav class="nav" aria-label="Primary">
+      <div class="nav-label">Core</div>
+      <button type="button" class="nav-item is-active" data-view="dashboard"><svg><use href="#i-grid"></use></svg><span>Command Center</span><kbd>1</kbd></button>
+      <button type="button" class="nav-item" data-view="assistant"><svg><use href="#i-spark"></use></svg><span>Assistant</span><kbd>2</kbd></button>
+      <button type="button" class="nav-item" data-view="focus"><svg><use href="#i-target"></use></svg><span>Deep Focus</span><kbd>3</kbd></button>
+      <button type="button" class="nav-item" data-view="workspace"><svg><use href="#i-layers"></use></svg><span>Workspace</span><kbd>4</kbd></button>
+      <button type="button" class="nav-item" data-view="timeline"><svg><use href="#i-calendar"></use></svg><span>Timeline</span><kbd>5</kbd></button>
+      <div class="nav-label">System</div>
+      <button type="button" class="nav-item" data-open="settings"><svg><use href="#i-settings"></use></svg><span>Settings</span></button>
+      <button type="button" class="nav-item" data-open="prime"><svg><use href="#i-crown"></use></svg><span>Jarvis Prime</span><span class="nav-badge" id="primeNavBadge">PRO</span></button>
+    </nav>
+
+    <div class="sidebar-foot">
+      <div class="prime-card" id="primeCard">
+        <div class="prime-glow"></div>
+        <div class="prime-head"><svg><use href="#i-crown"></use></svg><span>JARVIS PRIME</span></div>
+        <p id="primeCardText">Neural insights, cinematic ambience, and exclusive interface themes.</p>
+        <button type="button" class="prime-btn" data-open="prime" id="primeCardBtn">Explore Prime <svg><use href="#i-arrow-right"></use></svg></button>
+      </div>
+      <button type="button" class="profile" id="openSettingsProfile">
+        <span class="avatar" id="avatarInitials">CM</span>
+        <span class="profile-text"><strong id="profileNameLabel">Commander</strong><small><i class="status-dot"></i> Secure link</small></span>
+        <svg class="profile-chevron"><use href="#i-chevron-right"></use></svg>
+      </button>
+    </div>
+  </aside>
+
+  <div class="main">
+    <header class="topbar">
+      <div class="topbar-left">
+        <button type="button" class="icon-btn menu-btn" id="menuBtn" aria-label="Open navigation"><svg><use href="#i-menu"></use></svg></button>
+        <span class="live-dot"></span>
+        <span class="crumb" id="crumbLabel">Command Center</span>
+      </div>
+      <div class="topbar-actions">
+        <button type="button" class="search-trigger" id="openPalette">
+          <svg><use href="#i-search"></use></svg>
+          <span>Ask anything or run a command</span>
+          <kbd>Ctrl K</kbd>
+        </button>
+        <div class="pill clock-pill" id="topClock"><svg><use href="#i-clock"></use></svg><span>--:--</span></div>
+        <div class="pill timer-pill" id="timerPill" hidden><svg><use href="#i-clock"></use></svg><span id="timerPillText">00:00</span></div>
+        <div class="pill online-pill"><span class="pulse-dot"></span><span>Online</span></div>
+        <button type="button" class="icon-btn" id="voiceToggle" aria-label="Toggle voice responses" aria-pressed="true"><svg><use href="#i-volume"></use></svg></button>
+        <button type="button" class="icon-btn notif-btn" id="notifBtn" aria-label="Notifications">
+          <svg><use href="#i-bell"></use></svg><span class="notif-badge" id="notifBadge" hidden>0</span>
+        </button>
+        <button type="button" class="avatar avatar-btn" id="topAvatar">CM</button>
+      </div>
+    </header>
+
+    <div class="views" id="views">
+      <section class="view is-active" id="view-dashboard" aria-label="Command Center">
+        <div class="dash-grid">
+          <article class="card hero-card span-8">
+            <div class="hero-copy">
+              <div class="kicker"><span class="kicker-dot"></span> NEURAL CORE ONLINE</div>
+              <h1>Good evening, <span id="heroName">Commander</span>.</h1>
+              <p class="hero-sub" id="heroSub">All systems nominal. I have prepared your workspace and synced the latest intelligence.</p>
+              <div class="quick-chips">
+                <button type="button" data-prompt="Give me a status report">Status report</button>
+                <button type="button" data-prompt="What is the weather?">Weather</button>
+                <button type="button" data-prompt="Summarize my day">Brief me</button>
+                <button type="button" data-prompt="Play deep focus ambience">Focus sound</button>
+              </div>
+              <div class="hero-actions">
+                <button type="button" class="btn btn-primary" id="heroTalk"><svg><use href="#i-mic"></use></svg> Start conversation</button>
+                <button type="button" class="btn btn-ghost" data-view="assistant">Open console <svg><use href="#i-arrow-right"></use></svg></button>
+              </div>
+            </div>
+            <div class="hero-orb">
+              <canvas id="orbCanvas" width="360" height="360" aria-hidden="true"></canvas>
+              <div class="orb-caption"><span class="pulse-dot"></span> NEURAL LINK · STABLE</div>
+            </div>
+            <div class="corner tl"></div><div class="corner tr"></div><div class="corner bl"></div><div class="corner br"></div>
+          </article>
+
+          <article class="card weather-card span-4" id="weatherCard">
+            <div class="card-top">
+              <span class="card-kicker">Atmosphere</span>
+              <button type="button" class="mini-btn" id="weatherRefresh" aria-label="Refresh weather"><svg><use href="#i-refresh"></use></svg></button>
+            </div>
+            <div class="weather-main">
+              <div class="weather-icon" id="weatherIcon"><svg><use href="#i-cloud"></use></svg></div>
+              <div class="weather-readout">
+                <div class="weather-temp" id="weatherTemp">--<span>°</span></div>
+                <div class="weather-cond" id="weatherCond">Locating uplink</div>
+                <div class="weather-city" id="weatherCity"><svg><use href="#i-pin"></use></svg> —</div>
+              </div>
+            </div>
+            <div class="weather-meta">
+              <div><span>Humidity</span><strong id="weatherHumidity">—</strong></div>
+              <div><span>Wind</span><strong id="weatherWind">—</strong></div>
+              <div><span>Feels</span><strong id="weatherFeels">—</strong></div>
+            </div>
+            <div class="weather-days" id="weatherDays"></div>
+          </article>
+
+          <article class="card vitals-card span-4">
+            <div class="card-top"><span class="card-kicker">System Vitals</span><span class="tag tag-ok">Nominal</span></div>
+            <div class="vital-list">
+              <div class="vital">
+                <div class="vital-head"><span><svg><use href="#i-battery"></use></svg> Power cell</span><strong id="vitalBattery">—</strong></div>
+                <div class="bar"><i id="barBattery"></i></div>
+              </div>
+              <div class="vital">
+                <div class="vital-head"><span><svg><use href="#i-cpu"></use></svg> Core threads</span><strong id="vitalCores">—</strong></div>
+                <div class="bar"><i id="barCores"></i></div>
+              </div>
+              <div class="vital">
+                <div class="vital-head"><span><svg><use href="#i-gauge"></use></svg> Memory</span><strong id="vitalMemory">—</strong></div>
+                <div class="bar"><i id="barMemory"></i></div>
+              </div>
+              <div class="vital">
+                <div class="vital-head"><span><svg><use href="#i-wifi"></use></svg> Uplink</span><strong id="vitalNetwork">—</strong></div>
+                <div class="bar"><i id="barNetwork"></i></div>
+              </div>
+            </div>
+            <div class="vitals-foot"><span class="pulse-dot"></span> Diagnostics stream active <span id="sessionUptime">00:00:00</span></div>
+          </article>
+
+          <article class="card agenda-card span-4">
+            <div class="card-top"><span class="card-kicker">Agenda</span><button type="button" class="mini-btn" data-open="event" aria-label="Add event"><svg><use href="#i-plus"></use></svg></button></div>
+            <div class="mini-agenda" id="dashAgenda"></div>
+            <button type="button" class="link-btn" data-view="timeline">Open timeline <svg><use href="#i-arrow-right"></use></svg></button>
+          </article>
+
+          <article class="card focus-card span-4">
+            <div class="card-top"><span class="card-kicker">Deep Focus</span><span class="tag" id="focusStateTag">Ready</span></div>
+            <div class="focus-mini">
+              <div class="focus-ring-mini">
+                <svg viewBox="0 0 120 120"><circle class="ring-track" cx="60" cy="60" r="50"></circle><circle class="ring-value" id="dashFocusCircle" cx="60" cy="60" r="50"></circle></svg>
+                <span id="dashFocusTime">25:00</span>
+              </div>
+              <div class="focus-mini-info">
+                <p id="focusMiniCopy">One session is all it takes to shift momentum.</p>
+                <div class="focus-mini-stats"><span><strong id="dashFocusSessions">0</strong> sessions</span><span><strong id="dashFocusMinutes">0</strong> min</span></div>
+                <button type="button" class="btn btn-small btn-primary" id="dashFocusBtn">Begin focus</button>
+              </div>
+            </div>
+          </article>
+
+          <article class="card feed-card span-8">
+            <div class="card-top"><span class="card-kicker">Signal · Global Tech Feed</span><button type="button" class="mini-btn" id="feedRefresh" aria-label="Refresh feed"><svg><use href="#i-refresh"></use></svg></button></div>
+            <div class="feed-list" id="feedList">
+              <div class="skeleton-row"></div><div class="skeleton-row"></div><div class="skeleton-row"></div>
+            </div>
+          </article>
+
+          <article class="card insight-card span-4" id="insightCard">
+            <div class="card-top"><span class="card-kicker">Neural Insights</span><svg class="prime-mini"><use href="#i-crown"></use></svg></div>
+            <div class="insight-body" id="insightBody">
+              <div class="insight-stats">
+                <div><strong id="statCommands">0</strong><span>commands</span></div>
+                <div><strong id="statFocus">0</strong><span>focus min</span></div>
+                <div><strong id="statTasks">0</strong><span>tasks done</span></div>
+              </div>
+              <div class="spark" id="insightSpark"></div>
+              <p class="insight-copy" id="insightCopy">Your weekly rhythm will appear here as you use Jarvis.</p>
+            </div>
+            <div class="insight-lock" id="insightLock">
+              <svg><use href="#i-lock"></use></svg>
+              <strong>Prime intelligence</strong>
+              <span>Unlock weekly patterns and personal briefings.</span>
+              <button type="button" class="btn btn-small btn-prime" data-open="prime">Unlock Prime</button>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section class="view" id="view-assistant" aria-label="Assistant">
+        <div class="chat-layout">
+          <article class="card chat-card">
+            <header class="chat-head">
+              <div class="chat-identity">
+                <span class="chat-avatar">J</span>
+                <div><strong>J.A.R.V.I.S</strong><small id="chatStatus"><span class="pulse-dot"></span> Neural link active</small></div>
+              </div>
+              <div class="chat-head-actions">
+                <button type="button" class="icon-btn" id="chatVoice" aria-label="Toggle voice"><svg><use href="#i-volume"></use></svg></button>
+                <button type="button" class="icon-btn" id="clearChat" aria-label="Clear conversation"><svg><use href="#i-trash"></use></svg></button>
+              </div>
+            </header>
+            <div class="chat-log" id="chatLog" aria-live="polite"></div>
+            <div class="chat-suggestions" id="chatSuggestions">
+              <button type="button" data-prompt="Give me a status report">Status report</button>
+              <button type="button" data-prompt="What's the weather?">Weather</button>
+              <button type="button" data-prompt="Set a 10 minute timer">Set timer</button>
+              <button type="button" data-prompt="Summarize my day">Brief me</button>
+              <button type="button" data-prompt="Play deep focus ambience">Ambience</button>
+            </div>
+            <form class="composer" id="chatForm">
+              <button type="button" class="mic-btn" id="micBtn" aria-label="Speak to Jarvis"><svg><use href="#i-mic"></use></svg></button>
+              <input id="chatInput" type="text" placeholder="Ask Jarvis anything, Commander…" autocomplete="off" spellcheck="false" aria-label="Message Jarvis">
+              <button type="submit" class="send-btn" aria-label="Send message"><svg><use href="#i-send"></use></svg></button>
+            </form>
+          </article>
+
+          <aside class="chat-side">
+            <article class="card voice-card">
+              <div class="card-top"><span class="card-kicker">Voice Link</span><span class="tag" id="voiceStateTag">Standby</span></div>
+              <canvas id="voiceWave" width="560" height="160" aria-hidden="true"></canvas>
+              <p class="voice-copy" id="voiceCopy">Tap the microphone and speak naturally. Jarvis understands intent, not just keywords.</p>
+              <div class="switch-row">
+                <div><strong>Wake word</strong><span>Listen for “Hey Jarvis”</span></div>
+                <label class="switch"><input type="checkbox" id="wakeSwitch"><span></span></label>
+              </div>
+              <div class="switch-row">
+                <div><strong>Voice responses</strong><span>Jarvis speaks replies</span></div>
+                <label class="switch"><input type="checkbox" id="voiceSwitch"><span></span></label>
+              </div>
+            </article>
+            <article class="card capabilities-card">
+              <div class="card-top"><span class="card-kicker">Capabilities</span></div>
+              <div class="cap-grid">
+                <div><svg><use href="#i-wave"></use></svg><span>Voice control</span></div>
+                <div><svg><use href="#i-clock"></use></svg><span>Timers</span></div>
+                <div><svg><use href="#i-calendar"></use></svg><span>Scheduling</span></div>
+                <div><svg><use href="#i-layers"></use></svg><span>Tasks & notes</span></div>
+                <div><svg><use href="#i-target"></use></svg><span>Focus engine</span></div>
+                <div><svg><use href="#i-gauge"></use></svg><span>System status</span></div>
+                <div><svg><use href="#i-cloud"></use></svg><span>Weather</span></div>
+                <div><svg><use href="#i-search"></use></svg><span>Web search</span></div>
+              </div>
+            </article>
+          </aside>
+        </div>
+      </section>
+
+      <section class="view" id="view-focus" aria-label="Deep Focus">
+        <div class="focus-layout">
+          <article class="card focus-main">
+            <div class="card-top"><span class="card-kicker">Focus Protocol</span><span class="tag" id="focusMainTag">Ready</span></div>
+            <div class="focus-ring">
+              <svg viewBox="0 0 260 260">
+                <circle class="ring-track" cx="130" cy="130" r="112"></circle>
+                <circle class="ring-value" id="focusCircle" cx="130" cy="130" r="112"></circle>
+                <circle class="ring-tick" cx="130" cy="130" r="96"></circle>
+              </svg>
+              <div class="focus-clock">
+                <span class="focus-time" id="focusClock">25:00</span>
+                <span class="focus-label" id="focusLabel">FOCUS SESSION</span>
+              </div>
+            </div>
+            <div class="preset-row" id="presetRow">
+              <button type="button" data-preset="15">15 min</button>
+              <button type="button" data-preset="25" class="is-active">25 min</button>
+              <button type="button" data-preset="50">50 min</button>
+              <button type="button" data-preset="90">90 min</button>
+            </div>
+            <div class="focus-actions">
+              <button type="button" class="btn btn-primary btn-wide" id="focusToggle"><svg><use href="#i-play"></use></svg> Begin session</button>
+              <button type="button" class="btn btn-ghost" id="focusReset"><svg><use href="#i-refresh"></use></svg> Reset</button>
+            </div>
+            <div class="focus-stats">
+              <div><strong id="focusSessions">0</strong><span>Sessions completed</span></div>
+              <div><strong id="focusMinutes">0</strong><span>Minutes focused</span></div>
+              <div><strong id="focusStreak">1</strong><span>Day streak</span></div>
+            </div>
+            <p class="focus-note">Jarvis will mute non-critical alerts and log the session when the timer completes.</p>
+          </article>
+
+          <article class="card player-card">
+            <div class="card-top"><span class="card-kicker">Ambient Engine</span><span class="tag" id="musicStateTag">Idle</span></div>
+            <div class="visualizer-wrap"><canvas id="visualizer" width="640" height="220" aria-hidden="true"></canvas></div>
+            <div class="now-playing">
+              <div><span class="np-kicker">Now playing</span><strong id="nowPlaying">Deep Focus</strong><small id="nowGenre">Generative ambience</small></div>
+              <button type="button" class="play-big" id="musicToggle" aria-label="Play ambience"><svg><use href="#i-play"></use></svg></button>
+            </div>
+            <div class="track-list" id="trackList">
+              <button type="button" class="track is-active" data-track="focus"><span class="track-index">01</span><span class="track-meta"><strong>Deep Focus</strong><small>Ambient · 60 BPM</small></span><span class="track-eq"><i></i><i></i><i></i></span></button>
+              <button type="button" class="track" data-track="neon"><span class="track-index">02</span><span class="track-meta"><strong>Neon Skyline</strong><small>Synthwave · 92 BPM</small></span><span class="track-play"><svg><use href="#i-play"></use></svg></span></button>
+              <button type="button" class="track" data-track="horizon"><span class="track-index">03</span><span class="track-meta"><strong>Event Horizon</strong><small>Cosmic · Prime only</small></span><span class="track-lock"><svg><use href="#i-lock"></use></svg></span></button>
+            </div>
+            <div class="volume-row">
+              <svg><use href="#i-volume"></use></svg>
+              <input type="range" id="volume" min="0" max="100" value="45" aria-label="Ambient volume">
+              <span id="volumeValue">45</span>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section class="view" id="view-workspace" aria-label="Workspace">
+        <div class="workspace-layout">
+          <article class="card tasks-card">
+            <div class="card-top">
+              <span class="card-kicker">Task Matrix</span>
+              <button type="button" class="mini-btn" id="taskAddBtn" aria-label="New task"><svg><use href="#i-plus"></use></svg></button>
+            </div>
+            <div class="task-filters" id="taskFilters">
+              <button type="button" class="is-active" data-task-filter="all">All <span id="countAll">0</span></button>
+              <button type="button" data-task-filter="backlog">Backlog <span id="countBacklog">0</span></button>
+              <button type="button" data-task-filter="active">Active <span id="countActive">0</span></button>
+              <button type="button" data-task-filter="done">Done <span id="countDone">0</span></button>
+            </div>
+            <form class="task-form" id="taskForm">
+              <input id="taskInput" type="text" placeholder="Add a mission objective…" autocomplete="off" aria-label="Task title">
+              <select id="taskPriority" aria-label="Priority">
+                <option value="high">High</option>
+                <option value="medium" selected>Medium</option>
+                <option value="low">Low</option>
+              </select>
+              <button type="submit" class="btn btn-small btn-primary">Add</button>
+            </form>
+            <div class="task-list" id="taskList"></div>
+          </article>
+
+          <article class="card notes-card">
+            <div class="card-top">
+              <span class="card-kicker">Memory Vault</span>
+              <button type="button" class="mini-btn" id="noteAddBtn" aria-label="New note"><svg><use href="#i-plus"></use></svg></button>
+            </div>
+            <div class="notes-grid" id="notesGrid"></div>
+          </article>
+        </div>
+      </section>
+
+      <section class="view" id="view-timeline" aria-label="Timeline">
+        <div class="timeline-layout">
+          <article class="card calendar-card">
+            <div class="calendar-head">
+              <div><span class="card-kicker">Temporal Map</span><h3 id="calendarMonth">October 2026</h3></div>
+              <div class="calendar-nav">
+                <button type="button" class="mini-btn" id="calPrev" aria-label="Previous month"><svg><use href="#i-chevron-left"></use></svg></button>
+                <button type="button" class="mini-btn" id="calToday" aria-label="Today">Today</button>
+                <button type="button" class="mini-btn" id="calNext" aria-label="Next month"><svg><use href="#i-chevron-right"></use></svg></button>
+              </div>
+            </div>
+            <div class="calendar-weekdays"><span>Sun</span><span>Mon</span><span>Tue</span><span>Wed</span><span>Thu</span><span>Fri</span><span>Sat</span></div>
+            <div class="calendar-grid" id="calendarGrid"></div>
+            <div class="calendar-legend"><span><i class="legend-dot"></i> Today</span><span><i class="legend-event"></i> Scheduled</span></div>
+          </article>
+
+          <article class="card timeline-card">
+            <div class="card-top">
+              <div><span class="card-kicker">Mission Timeline</span><h3 id="timelineTitle">Upcoming</h3></div>
+              <button type="button" class="mini-btn" data-open="event" aria-label="Add event"><svg><use href="#i-plus"></use></svg></button>
+            </div>
+            <div class="timeline-list" id="timelineList"></div>
+            <button type="button" class="link-btn" id="showAllEvents">Show all upcoming <svg><use href="#i-arrow-right"></use></svg></button>
+          </article>
+        </div>
+      </section>
+    </div>
+  </div>
+</div>
+
+<aside class="notif-panel" id="notifPanel" aria-hidden="true" aria-label="Notifications">
+  <div class="notif-head"><strong>Notifications</strong><button type="button" class="mini-btn" id="clearNotifs">Clear all</button></div>
+  <div class="notif-list" id="notifList"></div>
+</aside>
+<div class="scrim" id="scrim"></div>
+
+<div class="modal" id="paletteModal" role="dialog" aria-modal="true" aria-label="Command palette">
+  <div class="palette">
+    <div class="palette-input">
+      <svg><use href="#i-command"></use></svg>
+      <input id="paletteInput" type="text" placeholder="Run a command or ask Jarvis anything…" autocomplete="off" spellcheck="false">
+      <kbd>ESC</kbd>
+    </div>
+    <div class="palette-results" id="paletteResults"></div>
+    <div class="palette-foot"><span><kbd>↑</kbd><kbd>↓</kbd> navigate</span><span><kbd>Enter</kbd> execute</span><span>JARVIS Prime intelligence</span></div>
+  </div>
+</div>
+
+<div class="modal" id="settingsModal" role="dialog" aria-modal="true" aria-label="Settings">
+  <div class="modal-card settings-card">
+    <header class="modal-head"><div><span class="card-kicker">System Preferences</span><h2>Settings</h2></div><button type="button" class="icon-btn" data-close aria-label="Close"><svg><use href="#i-x"></use></svg></button></header>
+    <div class="settings-body">
+      <section class="settings-section">
+        <h3>Identity</h3>
+        <label class="field"><span>Preferred name</span><input id="profileName" type="text" maxlength="24" autocomplete="off"></label>
+        <p class="field-hint">Jarvis uses this name in greetings and briefings.</p>
+      </section>
+      <section class="settings-section">
+        <h3>Interface accent</h3>
+        <div class="accent-grid" id="accentGrid">
+          <button type="button" class="accent-swatch is-active" data-accent="cyan" style="--swatch:#35e6ff"><i></i><span>Cyan</span></button>
+          <button type="button" class="accent-swatch" data-accent="emerald" style="--swatch:#3ef0b0"><i></i><span>Emerald</span></button>
+          <button type="button" class="accent-swatch" data-accent="gold" data-premium="true" style="--swatch:#ffd277"><i></i><span>Gold</span><svg><use href="#i-lock"></use></svg></button>
+          <button type="button" class="accent-swatch" data-accent="violet" data-premium="true" style="--swatch:#b18cff"><i></i><span>Violet</span><svg><use href="#i-lock"></use></svg></button>
+          <button type="button" class="accent-swatch" data-accent="rose" data-premium="true" style="--swatch:#ff7f9f"><i></i><span>Rose</span><svg><use href="#i-lock"></use></svg></button>
+        </div>
+      </section>
+      <section class="settings-section">
+        <h3>Voice & motion</h3>
+        <div class="switch-row"><div><strong>Voice responses</strong><span>Speak assistant replies aloud</span></div><label class="switch"><input type="checkbox" data-setting="voice"><span></span></label></div>
+        <div class="switch-row"><div><strong>Wake word</strong><span>Listen for “Hey Jarvis”</span></div><label class="switch"><input type="checkbox" data-setting="wake"><span></span></label></div>
+        <div class="switch-row"><div><strong>Interface sounds</strong><span>Subtle audio feedback</span></div><label class="switch"><input type="checkbox" data-setting="sfx"><span></span></label></div>
+        <div class="switch-row"><div><strong>Reduce motion</strong><span>Limit ambient animation</span></div><label class="switch"><input type="checkbox" data-setting="reduceMotion"><span></span></label></div>
+      </section>
+      <section class="settings-section">
+        <h3>Data & membership</h3>
+        <div class="settings-row">
+          <div><strong id="settingsPrimeState">Jarvis Core</strong><span id="settingsPrimeHint">Free tier · upgrade for deeper insight</span></div>
+          <button type="button" class="btn btn-small btn-ghost" data-open="prime">Manage</button>
+        </div>
+        <div class="settings-actions">
+          <button type="button" class="btn btn-small btn-ghost" id="exportData"><svg><use href="#i-download"></use></svg> Export data</button>
+          <button type="button" class="btn btn-small btn-danger" id="resetData"><svg><use href="#i-trash"></use></svg> Reset system</button>
+        </div>
+      </section>
+      <section class="settings-section">
+        <h3>Keyboard protocols</h3>
+        <div class="shortcut-list">
+          <div><span>Command palette</span><kbd>Ctrl</kbd><kbd>K</kbd></div>
+          <div><span>Navigate modules</span><kbd>1</kbd><span>–</span><kbd>5</kbd></div>
+          <div><span>Close overlay</span><kbd>Esc</kbd></div>
+        </div>
+      </section>
+    </div>
+  </div>
+</div>
+
+<div class="modal" id="primeModal" role="dialog" aria-modal="true" aria-label="Jarvis Prime">
+  <div class="modal-card prime-modal">
+    <header class="modal-head"><div><span class="card-kicker">Membership</span><h2>Jarvis Prime</h2></div><button type="button" class="icon-btn" data-close aria-label="Close"><svg><use href="#i-x"></use></svg></button></header>
+    <div class="prime-hero">
+      <div class="prime-emblem"><svg><use href="#i-crown"></use></svg></div>
+      <div>
+        <h3>Intelligence, without limits.</h3>
+        <p>Unlock neural insights, cinematic ambience, exclusive interface themes, and priority access to every new protocol.</p>
+      </div>
+    </div>
+    <div class="prime-features">
+      <div><svg><use href="#i-gauge"></use></svg><strong>Neural insights</strong><span>Weekly patterns, streaks, and personal briefings.</span></div>
+      <div><svg><use href="#i-wave"></use></svg><strong>Cinematic ambience</strong><span>Event Horizon and future premium soundscapes.</span></div>
+      <div><svg><use href="#i-crown"></use></svg><strong>Exclusive themes</strong><span>Gold, violet, and rose interface accents.</span></div>
+      <div><svg><use href="#i-download"></use></svg><strong>Data sovereignty</strong><span>Export your complete intelligence archive.</span></div>
+    </div>
+    <div class="prime-price"><div><span>Founders plan</span><strong>$12<small>/mo</small></strong></div><span>14-day trial · cancel anytime</span></div>
+    <div class="prime-actions">
+      <button type="button" class="btn btn-prime btn-wide" id="activatePrime"><svg><use href="#i-crown"></use></svg> Start free trial</button>
+      <p id="primeFinePrint">Demo membership — activation is instant and no payment is collected.</p>
+    </div>
+  </div>
+</div>
+
+<div class="modal" id="noteModal" role="dialog" aria-modal="true" aria-label="Note editor">
+  <div class="modal-card">
+    <header class="modal-head"><div><span class="card-kicker">Memory Vault</span><h2 id="noteModalTitle">New note</h2></div><button type="button" class="icon-btn" data-close aria-label="Close"><svg><use href="#i-x"></use></svg></button></header>
+    <form id="noteForm" class="modal-form">
+      <label class="field"><span>Title</span><input id="noteTitle" type="text" maxlength="80" placeholder="Project codename" required autocomplete="off"></label>
+      <label class="field"><span>Content</span><textarea id="noteBody" rows="7" placeholder="Capture the thought before it disappears…" required></textarea></label>
+      <div class="modal-actions"><button type="button" class="btn btn-ghost" data-close>Cancel</button><button type="submit" class="btn btn-primary">Save note</button></div>
+    </form>
+  </div>
+</div>
+
+<div class="modal" id="eventModal" role="dialog" aria-modal="true" aria-label="New event">
+  <div class="modal-card">
+    <header class="modal-head"><div><span class="card-kicker">Timeline</span><h2>Schedule event</h2></div><button type="button" class="icon-btn" data-close aria-label="Close"><svg><use href="#i-x"></use></svg></button></header>
+    <form id="eventForm" class="modal-form">
+      <label class="field"><span>Event title</span><input id="eventTitle" type="text" maxlength="80" placeholder="Mission briefing" required autocomplete="off"></label>
+      <div class="field-row">
+        <label class="field"><span>Date</span><input id="eventDate" type="date" required></label>
+        <label class="field"><span>Time</span><input id="eventTime" type="time" required></label>
+      </div>
+      <label class="field"><span>Category</span><select id="eventTag"><option value="mission">Mission</option><option value="meeting">Meeting</option><option value="personal">Personal</option><option value="focus">Focus</option></select></label>
+      <div class="modal-actions"><button type="button" class="btn btn-ghost" data-close>Cancel</button><button type="submit" class="btn btn-primary">Add to timeline</button></div>
+    </form>
+  </div>
+</div>
+
+<div class="toasts" id="toasts" aria-live="polite"></div>
+
+<script type="module" src="js/app.js"></script>
+</body>
+</html>
